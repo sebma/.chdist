@@ -1,0 +1,8 @@
+deb [arch=amd64] http://fr.archive.ubuntu.com/ubuntu/ bionic main universe restricted multiverse
+# deb-src [arch=amd64] http://fr.archive.ubuntu.com/ubuntu/ bionic main universe restricted multiverse
+deb [arch=amd64] http://fr.archive.ubuntu.com/ubuntu/ bionic-updates multiverse universe main restricted
+# deb-src [arch=amd64] http://fr.archive.ubuntu.com/ubuntu/ bionic-updates multiverse universe main restricted
+deb [arch=amd64] http://fr.archive.ubuntu.com/ubuntu/ bionic-backports multiverse universe main restricted
+# deb-src [arch=amd64] http://fr.archive.ubuntu.com/ubuntu/ bionic-backports multiverse universe main restricted
+deb [arch=amd64] http://security.ubuntu.com/ubuntu/ bionic-security multiverse universe main restricted
+# deb-src [arch=amd64] http://fr.archive.ubuntu.com/ubuntu/ bionic-security multiverse universe main restricted
