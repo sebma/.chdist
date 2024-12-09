@@ -1,7 +1,8 @@
-#deb http://deb.debian.org/debian/ unstable main contrib non-free
-#deb-src http://deb.debian.org/debian/ unstable main contrib non-free
-
-#deb http://archive.ubuntu.com/ubuntu dapper main restricted
-#deb http://archive.ubuntu.com/ubuntu dapper universe multiverse
-#deb-src http://archive.ubuntu.com/ubuntu dapper main restricted
-#deb-src http://archive.ubuntu.com/ubuntu dapper universe multiverse
+deb [arch=amd64] http://fr.archive.ubuntu.com/ubuntu/ 22.04 main universe restricted multiverse
+# deb-src [arch=amd64] http://fr.archive.ubuntu.com/ubuntu/ 22.04 main universe restricted multiverse
+deb [arch=amd64] http://fr.archive.ubuntu.com/ubuntu/ 22.04-updates multiverse universe main restricted
+# deb-src [arch=amd64] http://fr.archive.ubuntu.com/ubuntu/ 22.04-updates multiverse universe main restricted
+deb [arch=amd64] http://fr.archive.ubuntu.com/ubuntu/ 22.04-backports multiverse universe main restricted
+# deb-src [arch=amd64] http://fr.archive.ubuntu.com/ubuntu/ 22.04-backports multiverse universe main restricted
+deb [arch=amd64] http://security.ubuntu.com/ubuntu/ 22.04-security multiverse universe main restricted
+# deb-src [arch=amd64] http://fr.archive.ubuntu.com/ubuntu/ 22.04-security multiverse universe main restricted
