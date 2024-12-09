@@ -1,8 +1,0 @@
-deb [arch=amd64] http://fr.archive.ubuntu.com/ubuntu/ trusty main universe restricted multiverse
-# deb-src [arch=amd64] http://fr.archive.ubuntu.com/ubuntu/ trusty main universe restricted multiverse
-deb [arch=amd64] http://fr.archive.ubuntu.com/ubuntu/ trusty-updates multiverse universe main restricted
-# deb-src [arch=amd64] http://fr.archive.ubuntu.com/ubuntu/ trusty-updates multiverse universe main restricted
-deb [arch=amd64] http://fr.archive.ubuntu.com/ubuntu/ trusty-backports multiverse universe main restricted
-# deb-src [arch=amd64] http://fr.archive.ubuntu.com/ubuntu/ trusty-backports multiverse universe main restricted
-deb [arch=amd64] http://security.ubuntu.com/ubuntu/ trusty-security multiverse universe main restricted
-# deb-src [arch=amd64] http://fr.archive.ubuntu.com/ubuntu/ trusty-security multiverse universe main restricted
