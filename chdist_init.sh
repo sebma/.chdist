@@ -24,3 +24,8 @@ sed -i "/.chdist/ s|\".*/.chdist/|\"$HOME/.chdist/|" */etc/apt/apt.conf
 find -maxdepth 1 -type l | egrep -v '^.$|^./.git$' | sed 's|^./||' | while read distrib;do
 	cat /etc/apt/sources.list | sed "s/$(\lsb_release -sc)/$distrib/" | tee ~/.chdist/$distrib/etc/apt/sources.list >/dev/null
 done
+
+proxyFile=$(grep Proxy /etc/apt/apt.conf.d/* -m1 -l)
+if [ -n "$proxyFile" ] && [ -s "$proxyFile" ];then
+	for distribNumber in $(LC_NUMERIC=C seq 14.04 2 24);do mkdir -p ~/.chdist/$distribNumber/etc/apt/apt.conf.d/ && cp -puv $proxyFile ~/.chdist/$distribNumber/etc/apt/apt.conf.d/;done
+fi
