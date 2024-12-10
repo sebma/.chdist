@@ -21,8 +21,12 @@ done
 
 sed -i "/.chdist/ s|\".*/.chdist/|\"$HOME/.chdist/|" */etc/apt/apt.conf
 
-find -maxdepth 1 -type l | egrep -v '^.$|^./.git$' | sed 's|^./||' | while read distrib;do
-	cat /etc/apt/sources.list | sed "s/$(\lsb_release -sc)/$distrib/" | tee ~/.chdist/$distrib/etc/apt/sources.list >/dev/null
+find -maxdepth 1 -type l | egrep -v '^.$|^./.git$' | sed 's|^./||' | while read distribName;do
+	if [ -s /etc/apt/sources.list.d/ubuntu.sources ];then
+		cat /etc/apt/sources.list.d/ubuntu.sources
+	else
+		cat /etc/apt/sources.list
+	fi | sed "s/$(\lsb_release -sc)/$distribName/" | tee ~/.chdist/$distribName/etc/apt/sources.list >/dev/null
 done
 
 proxyFile=$(grep Proxy /etc/apt/apt.conf.d/* -m1 -l)
