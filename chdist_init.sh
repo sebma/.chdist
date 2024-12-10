@@ -23,6 +23,7 @@ sed -i "/.chdist/ s|\".*/.chdist/|\"$HOME/.chdist/|" */etc/apt/apt.conf
 
 find -maxdepth 1 -type l | egrep -v '^.$|^./.git$' | sed 's|^./||' | while read distribName;do
 	if [ -s /etc/apt/sources.list.d/ubuntu.sources ];then
+		mkdir ~/.chdist/$distribName/etc/apt/sources.list.d/
 		cat /etc/apt/sources.list.d/ubuntu.sources | sed "s/$(\lsb_release -sc)/$distribName/" > ~/.chdist/$distribName/etc/apt/sources.list.d/ubuntu.sources
 	else
 		cat /etc/apt/sources.list | sed "s/$(\lsb_release -sc)/$distribName/" > ~/.chdist/$distribName/etc/apt/sources.list
