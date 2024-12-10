@@ -31,4 +31,4 @@ if [ -n "$proxyFile" ] && [ -s "$proxyFile" ];then
 fi
 
 #Creating $HOME/.chdist/%s/etc/apt/apt.conf.d/ dirs cf. http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=578446
-mkdir -v $(printf "$HOME/.chdist/%s/etc/apt/apt.conf.d/ " $(LC_NUMERIC=C seq 14.04 2 24.04))
+mkdir -p -v $(printf "$HOME/.chdist/%s/etc/apt/apt.conf.d/ " $(LC_NUMERIC=C seq 14.04 2 24.04))
