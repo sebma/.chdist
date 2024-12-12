@@ -4,5 +4,5 @@ deb [arch=amd64] http://fr.archive.ubuntu.com/ubuntu/ focal-updates multiverse u
 # deb-src [arch=amd64] http://fr.archive.ubuntu.com/ubuntu/ focal-updates multiverse universe main restricted
 deb [arch=amd64] http://fr.archive.ubuntu.com/ubuntu/ focal-backports multiverse universe main restricted
 # deb-src [arch=amd64] http://fr.archive.ubuntu.com/ubuntu/ focal-backports multiverse universe main restricted
-deb [arch=amd64] http://security.ubuntu.com/ubuntu/ focal-security multiverse universe main restricted
+deb [arch=amd64] http://fr.archive.ubuntu.com/ubuntu/ focal-security multiverse universe main restricted
 # deb-src [arch=amd64] http://fr.archive.ubuntu.com/ubuntu/ focal-security multiverse universe main restricted
