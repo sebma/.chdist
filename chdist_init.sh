@@ -21,14 +21,28 @@ done
 
 sed -i "/.chdist/ s|\".*/.chdist/|\"$HOME/.chdist/|" */etc/apt/apt.conf
 
-find -maxdepth 1 -type l | egrep -v '^.$|^./.git$' | sed 's|^./||' | while read distribName;do
-	if [ -s /etc/apt/sources.list.d/ubuntu.sources ];then
-		mkdir -p ~/.chdist/$distribName/etc/apt/sources.list.d/
-		cat /etc/apt/sources.list.d/ubuntu.sources | sed "s/$(\lsb_release -sc)/$distribName/" > ~/.chdist/$distribName/etc/apt/sources.list.d/ubuntu.sources
-	else
+majorVersion=$(lsb_release -sr | cut -d. -f1)
+arch=$(dpkg --print-architecture)
+
+if [ $majorVersion -ge 24 ];then
+	find -maxdepth 1 -type l | egrep -v '^.$|^./.git$' | sed 's|^./||' | while read distribName;do
+		distribNumber=$(readlink $distribName | cut -d. -f1)
+		if [ $distribNumber -ge 24 ];then
+			cat /etc/apt/sources.list.d/ubuntu.sources | sed "s/$(\lsb_release -sc)/$distribName/" > ~/.chdist/$distribName/etc/apt/sources.list.d/ubuntu.sources
+		else
+			cat <<EOF > ~/.chdist/$distribName/etc/apt/sources.list
+deb [arch=$arch] http://fr.archive.ubuntu.com/ubuntu/ $distribName main universe restricted multiverse
+deb [arch=$arch] http://fr.archive.ubuntu.com/ubuntu/ $distribName-updates multiverse universe main restricted
+deb [arch=$arch] http://fr.archive.ubuntu.com/ubuntu/ $distribName-backports multiverse universe main restricted
+deb [arch=$arch] http://security.ubuntu.com/ubuntu/ $distribName-security multiverse universe main restricted
+EOF
+		fi
+	done
+else
+	find -maxdepth 1 -type l | egrep -v '^.$|^./.git$' | sed 's|^./||' | while read distribName;do
 		cat /etc/apt/sources.list | sed "s/$(\lsb_release -sc)/$distribName/" > ~/.chdist/$distribName/etc/apt/sources.list
-	fi
-done
+	done
+fi
 
 proxyFile=$(grep Proxy /etc/apt/apt.conf.d/* -m1 -l)
 if [ -n "$proxyFile" ] && [ -s "$proxyFile" ];then
