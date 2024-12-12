@@ -32,9 +32,13 @@ if [ $majorVersion -ge 24 ];then
 		else
 			cat <<EOF > ~/.chdist/$distribName/etc/apt/sources.list
 deb [arch=$arch] http://fr.archive.ubuntu.com/ubuntu/ $distribName main universe restricted multiverse
+#deb-src [arch=$arch] http://fr.archive.ubuntu.com/ubuntu/ $distribName main universe restricted multiverse
 deb [arch=$arch] http://fr.archive.ubuntu.com/ubuntu/ $distribName-updates multiverse universe main restricted
+#deb-src [arch=$arch] http://fr.archive.ubuntu.com/ubuntu/ $distribName-updates multiverse universe main restricted
 deb [arch=$arch] http://fr.archive.ubuntu.com/ubuntu/ $distribName-backports multiverse universe main restricted
+#deb-src [arch=$arch] http://fr.archive.ubuntu.com/ubuntu/ $distribName-backports multiverse universe main restricted
 deb [arch=$arch] http://security.ubuntu.com/ubuntu/ $distribName-security multiverse universe main restricted
+#deb-src [arch=$arch] http://security.ubuntu.com/ubuntu/ $distribName-security multiverse universe main restricted
 EOF
 		fi
 	done
