@@ -37,8 +37,8 @@ deb [arch=$arch] http://fr.archive.ubuntu.com/ubuntu/ $distribName-updates multi
 # deb-src [arch=$arch] http://fr.archive.ubuntu.com/ubuntu/ $distribName-updates multiverse universe main restricted
 deb [arch=$arch] http://fr.archive.ubuntu.com/ubuntu/ $distribName-backports multiverse universe main restricted
 # deb-src [arch=$arch] http://fr.archive.ubuntu.com/ubuntu/ $distribName-backports multiverse universe main restricted
-deb [arch=$arch] http://security.ubuntu.com/ubuntu/ $distribName-security multiverse universe main restricted
-# deb-src [arch=$arch] http://security.ubuntu.com/ubuntu/ $distribName-security multiverse universe main restricted
+deb [arch=$arch] http://fr.archive.ubuntu.com/ubuntu/ $distribName-security multiverse universe main restricted
+# deb-src [arch=$arch] http://fr.archive.ubuntu.com/ubuntu/ $distribName-security multiverse universe main restricted
 EOF
 		fi
 	done
