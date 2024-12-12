@@ -4,5 +4,5 @@ deb [arch=amd64] http://fr.archive.ubuntu.com/ubuntu/ jammy-updates multiverse u
 # deb-src [arch=amd64] http://fr.archive.ubuntu.com/ubuntu/ jammy-updates multiverse universe main restricted
 deb [arch=amd64] http://fr.archive.ubuntu.com/ubuntu/ jammy-backports multiverse universe main restricted
 # deb-src [arch=amd64] http://fr.archive.ubuntu.com/ubuntu/ jammy-backports multiverse universe main restricted
-deb [arch=amd64] http://security.ubuntu.com/ubuntu/ jammy-security multiverse universe main restricted
+deb [arch=amd64] http://fr.archive.ubuntu.com/ubuntu/ jammy-security multiverse universe main restricted
 # deb-src [arch=amd64] http://fr.archive.ubuntu.com/ubuntu/ jammy-security multiverse universe main restricted
