@@ -7,4 +7,7 @@ To update one distrib apt lists, type this command :
 
 To update all the distribs apt lists, type this command :
 
-`find -maxdepth 1 -type d | egrep -v '^.$|^./.git$' | sed 's|^./||' | while read distribNumber;do chdist apt-get $distribNumber update; done`
+```shell
+find -maxdepth 1 -type d | egrep -v '^.$|^./.git$' | sed 's|^./||' | while read distribNumber;do chdist apt-get $distribNumber update; done
+find -maxdepth 1 -type d | egrep -v '^.$|^./.git$' | sed 's|^./||' | while read distribNumber;do chdist apt-file $distribNumber update; done
+```
