@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 
 set -u
+
+mkdir -p -v $(printf "$HOME/.chdist/%s/etc/apt/ " $(LC_NUMERIC=C seq 14.04 2 24.04))
+
 for distribNumber in $(LC_NUMERIC=C seq 14.04 2 24.04);do
 	if ! [ -d $distribNumber ];then
 		echo "= chdist create $distribNumber ..."
