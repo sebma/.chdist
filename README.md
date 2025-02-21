@@ -8,6 +8,6 @@ To update one distrib apt lists, type this command :
 To update all the distribs apt lists, type this command :
 
 ```shell
-find . -maxdepth 1 -path ./.git -prune -o -type d -print | egrep -v '^.$|^./.git$' | sed 's|^./||' | while read distribNumber;do chdist apt-get $distribNumber update; done
-find . -maxdepth 1 -path ./.git -prune -o -type d -print | egrep -v '^.$|^./.git$' | sed 's|^./||' | while read distribNumber;do chdist apt-file $distribNumber update; done
+find . -maxdepth 1 -path ./.git -prune -o -type d -print | sed 's|^./||' | while read distribNumber;do chdist apt-get $distribNumber update; done
+find . -maxdepth 1 -path ./.git -prune -o -type d -print | sed 's|^./||' | while read distribNumber;do chdist apt-file $distribNumber update; done
 ```
