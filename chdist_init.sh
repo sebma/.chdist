@@ -2,7 +2,7 @@
 
 set -u
 
-seq="LC_NUMERIC=C seq"
+seq="env LC_NUMERIC=C seq"
 mkdir -p -v $(printf "$HOME/.chdist/%s/etc/apt/ " $($seq 14.04 2 24.04))
 
 for distribNumber in $($seq 14.04 2 24.04);do
