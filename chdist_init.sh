@@ -2,9 +2,10 @@
 
 set -u
 
-mkdir -p -v $(printf "$HOME/.chdist/%s/etc/apt/ " $(LC_NUMERIC=C seq 14.04 2 24.04))
+seq="LC_NUMERIC=C seq"
+mkdir -p -v $(printf "$HOME/.chdist/%s/etc/apt/ " $($seq 14.04 2 24.04))
 
-for distribNumber in $(LC_NUMERIC=C seq 14.04 2 24.04);do
+for distribNumber in $($seq 14.04 2 24.04);do
 	if ! [ -d $distribNumber ];then
 		echo "= chdist create $distribNumber ..."
 		chdist create $distribNumber
@@ -53,9 +54,9 @@ fi
 
 proxyFile=$(grep Proxy /etc/apt/apt.conf.d/* -m1 -l)
 if [ -n "$proxyFile" ] && [ -s "$proxyFile" ];then
-	for distribNumber in $(LC_NUMERIC=C seq 14.04 2 24);do mkdir -p ~/.chdist/$distribNumber/etc/apt/apt.conf.d/ && cp -puv $proxyFile ~/.chdist/$distribNumber/etc/apt/apt.conf.d/;done
+	for distribNumber in $($seq 14.04 2 24);do mkdir -p ~/.chdist/$distribNumber/etc/apt/apt.conf.d/ && cp -puv $proxyFile ~/.chdist/$distribNumber/etc/apt/apt.conf.d/;done
 fi
 
 #Creating $HOME/.chdist/%s/etc/apt/apt.conf.d/ dirs cf. http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=578446
-mkdir -p -v $(printf "$HOME/.chdist/%s/etc/apt/apt.conf.d/ " $(LC_NUMERIC=C seq 14.04 2 24.04))
-mkdir -p -v $(printf "$HOME/.chdist/%s/etc/apt/preferences.d/ " $(LC_NUMERIC=C seq 14.04 2 24.04))
+mkdir -p -v $(printf "$HOME/.chdist/%s/etc/apt/apt.conf.d/ " $($seq 14.04 2 24.04))
+mkdir -p -v $(printf "$HOME/.chdist/%s/etc/apt/preferences.d/ " $($seq 14.04 2 24.04))
