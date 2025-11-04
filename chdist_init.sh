@@ -7,9 +7,9 @@ distribVersionList=$($seq 14.04 2 24.04)
 mkdir -p -v $(printf "$HOME/.chdist/%s/etc/apt/ " $distribVersionList)
 
 for distribNumber in $distribVersionList;do
-	if ! [ -d $distribNumber ];then
+	if ! [ -f $distribNumber/etc/apt/apt.conf ];then
 		echo "= chdist create $distribNumber ..."
-		chdist create $distribNumber
+		chdist create $distribNumber 2>&1 | grep -v "deprecated"
 	fi
 done
 
