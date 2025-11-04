@@ -3,9 +3,10 @@
 set -u
 
 seq="env LC_NUMERIC=C seq"
-mkdir -p -v $(printf "$HOME/.chdist/%s/etc/apt/ " $($seq 14.04 2 24.04))
+distribVersionList=$($seq 14.04 2 24.04)
+mkdir -p -v $(printf "$HOME/.chdist/%s/etc/apt/ " $distribVersionList)
 
-for distribNumber in $($seq 14.04 2 24.04);do
+for distribNumber in $distribVersionList;do
 	if ! [ -d $distribNumber ];then
 		echo "= chdist create $distribNumber ..."
 		chdist create $distribNumber
@@ -32,6 +33,7 @@ if [ $majorVersion -ge 24 ];then
 	find -maxdepth 1 -type l | egrep -v '^.$|^./.git$' | sed 's|^./||' | while read distribName;do
 		distribNumber=$(readlink $distribName | cut -d. -f1)
 		if [ $distribNumber -ge 24 ];then
+			test -d ~/.chdist/$distribName/etc/apt/sources.list.d/ || mkdir -pv ~/.chdist/$distribName/etc/apt/sources.list.d/
 			cat /etc/apt/sources.list.d/ubuntu.sources | sed "s/$(\lsb_release -sc)/$distribName/" > ~/.chdist/$distribName/etc/apt/sources.list.d/ubuntu.sources
 		else
 			cat <<EOF > ~/.chdist/$distribName/etc/apt/sources.list
@@ -54,9 +56,11 @@ fi
 
 proxyFile=$(grep Proxy /etc/apt/apt.conf.d/* -m1 -l)
 if [ -n "$proxyFile" ] && [ -s "$proxyFile" ];then
-	for distribNumber in $($seq 14.04 2 24);do mkdir -p ~/.chdist/$distribNumber/etc/apt/apt.conf.d/ && cp -puv $proxyFile ~/.chdist/$distribNumber/etc/apt/apt.conf.d/;done
+	for distribNumber in $distribVersionList;do
+		mkdir -p ~/.chdist/$distribNumber/etc/apt/apt.conf.d/ && cp -puv $proxyFile ~/.chdist/$distribNumber/etc/apt/apt.conf.d/
+	done
 fi
 
 #Creating $HOME/.chdist/%s/etc/apt/apt.conf.d/ dirs cf. http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=578446
-mkdir -p -v $(printf "$HOME/.chdist/%s/etc/apt/apt.conf.d/ " $($seq 14.04 2 24.04))
-mkdir -p -v $(printf "$HOME/.chdist/%s/etc/apt/preferences.d/ " $($seq 14.04 2 24.04))
+mkdir -p -v $(printf "$HOME/.chdist/%s/etc/apt/apt.conf.d/ " $distribVersionList)
+mkdir -p -v $(printf "$HOME/.chdist/%s/etc/apt/preferences.d/ " $distribVersionList)
