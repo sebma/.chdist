@@ -4,11 +4,10 @@ set -u
 
 seq="env LC_NUMERIC=C seq"
 distribVersionList=$($seq 14.04 2 24.04)
-mkdir -p -v $(printf "$HOME/.chdist/%s/etc/apt/ " $distribVersionList)
 
 for distribNumber in $distribVersionList;do
-	if ! [ -f $distribNumber/etc/apt/apt.conf ];then
-		echo "= chdist create $distribNumber ..."
+	if ! [ -d $distribNumber ];then
+		echo "=> chdist create $distribNumber ..."
 		chdist create $distribNumber 2>&1 | grep -v "deprecated"
 	fi
 done
@@ -24,7 +23,9 @@ find -maxdepth 1 -type d | egrep -v '^.$|^./.git$' | sed 's|^./||' | while read 
 	esac
 done
 
-sed -i "/.chdist/ s|\".*/.chdist/|\"$HOME/.chdist/|" */etc/apt/apt.conf
+mkdir -p -v $(printf "$HOME/.chdist/%s/etc/apt/ " $distribVersionList)
+
+#sed -i "/.chdist/ s|\".*/.chdist/|\"$HOME/.chdist/|" */etc/apt/apt.conf
 
 majorVersion=$(lsb_release -sr | cut -d. -f1)
 arch=$(dpkg --print-architecture)
