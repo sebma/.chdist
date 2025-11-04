@@ -65,3 +65,10 @@ fi
 #Creating $HOME/.chdist/%s/etc/apt/apt.conf.d/ dirs cf. http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=578446
 mkdir -p -v $(printf "$HOME/.chdist/%s/etc/apt/apt.conf.d/ " $distribVersionList)
 mkdir -p -v $(printf "$HOME/.chdist/%s/etc/apt/preferences.d/ " $distribVersionList)
+
+for distribNumber in $distribVersionList;do
+	if [ -f $distribNumber/etc/apt/apt.conf ];then
+		echo "=> chdist apt $distribNumber update ..."
+		chdist apt $distribNumber update 2>&1 | grep -v "deprecated"
+	fi
+done
