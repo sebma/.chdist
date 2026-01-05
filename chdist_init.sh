@@ -3,7 +3,7 @@
 set -u
 
 seq="env LC_NUMERIC=C seq"
-distribVersionList=$($seq 14.04 2 24.04)
+distribVersionList=$($seq 14.04 2 $(lsb_release -sr 2>/dev/null))
 
 for distribNumber in $distribVersionList;do
 	if ! [ -d $distribNumber ];then
@@ -30,10 +30,11 @@ mkdir -p -v $(printf "$HOME/.chdist/%s/etc/apt/ " $distribVersionList)
 majorVersion=$(lsb_release -sr | cut -d. -f1)
 arch=$(dpkg --print-architecture)
 
-if [ $majorVersion -ge 24 ];then
+nobleMajorVersion=24
+if [ $majorVersion -ge $nobleMajorVersion ];then
 	find -maxdepth 1 -type l | egrep -v '^.$|^./.git$' | sed 's|^./||' | while read distribName;do
 		distribNumber=$(readlink $distribName | cut -d. -f1)
-		if [ $distribNumber -ge 24 ];then
+		if [ $distribNumber -ge $nobleMajorVersion ];then
 			test -d ~/.chdist/$distribName/etc/apt/sources.list.d/ || mkdir -pv ~/.chdist/$distribName/etc/apt/sources.list.d/
 			cat /etc/apt/sources.list.d/ubuntu.sources | sed "s/$(\lsb_release -sc)/$distribName/" > ~/.chdist/$distribName/etc/apt/sources.list.d/ubuntu.sources
 		else
