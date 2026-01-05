@@ -3,7 +3,7 @@
 set -u
 
 seq="env LC_NUMERIC=C seq"
-distribVersionList=$($seq 14.04 2 $(lsb_release -sr 2>/dev/null))
+distribVersionList=$($seq 14.04 2 $(($(lsb_release -sr 2>/dev/null | cut -d. -f1)-2)).04)
 
 for distribNumber in $distribVersionList;do
 	if ! [ -d $distribNumber ];then
