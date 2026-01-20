@@ -3,7 +3,7 @@
 set -u
 
 seq="env LC_NUMERIC=C seq"
-majorVersion=$(lsb_release -sr 2>/dev/null | cut -d. -f1)
+currentMajorVersion=$(lsb_release -sr 2>/dev/null | cut -d. -f1)
 distribVersionList=$($seq 14.04 2 $(($(lsb_release -sr 2>/dev/null | cut -d. -f1)-2)).04)
 
 for distribNumber in $distribVersionList;do
@@ -31,7 +31,7 @@ mkdir -p -v $(printf "$HOME/.chdist/%s/etc/apt/ " $distribVersionList)
 arch=$(dpkg --print-architecture)
 
 nobleMajorVersion=24
-if [ $majorVersion -ge $nobleMajorVersion ];then
+if [ $currentMajorVersion -ge $nobleMajorVersion ];then
 	find -maxdepth 1 -type l | egrep -v '^.$|^./.git$' | sed 's|^./||' | while read distribName;do
 		distribNumber=$(readlink $distribName | cut -d. -f1)
 		if [ $distribNumber -ge $nobleMajorVersion ];then
