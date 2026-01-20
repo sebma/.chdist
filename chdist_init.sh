@@ -3,6 +3,7 @@
 set -u
 
 seq="env LC_NUMERIC=C seq"
+majorVersion=$(lsb_release -sr 2>/dev/null | cut -d. -f1)
 distribVersionList=$($seq 14.04 2 $(($(lsb_release -sr 2>/dev/null | cut -d. -f1)-2)).04)
 
 for distribNumber in $distribVersionList;do
@@ -27,7 +28,6 @@ mkdir -p -v $(printf "$HOME/.chdist/%s/etc/apt/ " $distribVersionList)
 
 #sed -i "/.chdist/ s|\".*/.chdist/|\"$HOME/.chdist/|" */etc/apt/apt.conf
 
-majorVersion=$(lsb_release -sr | cut -d. -f1)
 arch=$(dpkg --print-architecture)
 
 nobleMajorVersion=24
