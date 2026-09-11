@@ -72,6 +72,6 @@ for distribNumber in $distribVersionList;do
 	if [ -f $distribNumber/etc/apt/apt.conf ];then
 		echo "=> chdist apt-get $distribNumber update ..."
 		chdist apt-get $distribNumber update 2>&1 | grep -v "deprecated"
-		which apt-file >/dev/null 2>&1 && chdist apt-file $distribNumber update
+		which apt-file >/dev/null 2>&1 && chdist apt-file $distribNumber update 2>&1 | grep -v "deprecated"
 	fi
 done
