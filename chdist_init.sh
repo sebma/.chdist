@@ -26,7 +26,7 @@ done
 
 mkdir -p -v $(printf "$HOME/.chdist/%s/etc/apt/ " $distribVersionList)
 
-#sed -i "/.chdist/ s|\".*/.chdist/|\"$HOME/.chdist/|" */etc/apt/apt.conf
+sed -i "/.chdist/ s|\".*/.chdist/|\"$HOME/.chdist/|" */etc/apt/apt.conf
 
 arch=$(dpkg --print-architecture)
 
