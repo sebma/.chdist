@@ -69,7 +69,7 @@ mkdir -p -v $(printf "$HOME/.chdist/%s/etc/apt/preferences.d/ " $distribVersionL
 
 for distribNumber in $distribVersionList;do
 	if [ -f $distribNumber/etc/apt/apt.conf ];then
-		echo "=> chdist apt $distribNumber update ..."
+		echo "=> chdist apt-get $distribNumber update ..."
 		chdist apt-get $distribNumber update 2>&1 | grep -v "deprecated"
 	fi
 done
