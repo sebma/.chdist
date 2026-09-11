@@ -26,6 +26,7 @@ done
 
 mkdir -p -v $(printf "$HOME/.chdist/%s/etc/apt/ " $distribVersionList)
 
+# Change the "Dir" of */etc/apt/apt.conf files downloaded from the remote repo
 sed -i "/.chdist/ s|\".*/.chdist/|\"$HOME/.chdist/|" */etc/apt/apt.conf
 
 arch=$(dpkg --print-architecture)
